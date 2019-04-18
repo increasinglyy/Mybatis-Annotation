@@ -5,6 +5,10 @@ spring:
     password: 123456
     driver-class-name: com.mysql.jdbc.Driver
 
+  thymeleaf:
+    cache: false #关闭缓存
+    prefix: classpath:/views/ #调整页面路径（原来可能是templates/）
+
 mybatis:
   configuration:
     map-underscore-to-camel-case: true
@@ -13,3 +17,5 @@ logging:
   level:
     #打印SQL信息
     com.hehe.mabatis.mapper: debug
+
+

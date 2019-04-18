@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title th:text="用户表单">User</title>
+    <!--默认拼接前缀路径,开头请勿再添加斜杠,防止部署运行报错！-->
+    <script th:replace="common/head::static"></script>
+</head>
+
+<body>
+<h3>用户表单</h3>
+<form class="form-horizontal" th:object="${user}">
+    <input type="hidden" id="id" name="id" th:value="*{userId}"> <!--userId是User类返回的-->
+    <div>
+        <label>账号:</label>
+        <div>
+            <input th:value="*{username}"/> <!--username是User类返回的-->
+        </div>
+    </div>
+
+    <div class="form-group">
+        <label class="col-md-2 control-label">密码:</label>
+        <div class="col-md-4">
+            <input class="form-control" id="password" name="password" th:value="*{password}" type="password"/>
+        </div>
+    </div>
+</form>
+
+</body>
+</html>

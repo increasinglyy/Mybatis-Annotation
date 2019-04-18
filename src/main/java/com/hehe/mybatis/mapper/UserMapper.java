@@ -19,6 +19,9 @@ public interface UserMapper {
     List<User> findByUsername(String username);
 
     @Select("select * from t_user where user_id like #{userId}")
+    List<User> findByUserId(String userId);
+
+    @Select("select * from t_user where user_id like #{userId}")
     User getOne(String userId);
 
     @Delete("delete from t_user where user_id like #{userId}")
