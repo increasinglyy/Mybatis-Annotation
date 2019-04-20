@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta  http-equiv="Content-Type" content="text/html;charset=UTF-8"/>
+    <title>遍历User</title>
+</head>
+<body>
+<div  th:fragment="content" style="width:500px;margin:20px auto;text-align: center" >
+    <table align='center' border='1' cellspacing='0'>
+        <tr>
+            <td>id</td>
+            <td>name</td>
+            <td>编辑</td>
+            <td>删除</td>
+        </tr>
+        <tr th:each="c:${userList}">  <!--c表示列表里的每一个user-->
+            <td th:text="${c.userId}">1</td>
+            <td th:text="${c.username}">name</td>
+            <td><a th:href="@{/findUser(id=${c.userId})}">编辑</a></td>
+            <td><a th:href="@{/deleteUser(id=${c.userId})}">删除</a></td>
+        </tr>
+    </table>
+    <br/>
+
+    <br/>
+    <form action="addUser" method="post">
+
+        name: <input name="name"/> <br/>
+        <button type="submit">添加</button>
+
+    </form>
+</div>
+</body>
+</html>

@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>客户列表</title>
+    <style>
+        table{border-collapse:collapse;}
+        table,th, td{border: 1px solid black;padding: 5px;text-align: center;}
+    </style>
+</head>
+<body>
+    <br/>
+    <br/>
+    <a href="/user/oneUser">新增用户</a>
+    <br/>
+    <br/>
+    <table>
+        <thead>
+            <th width="20%">id</th>
+            <th width="20%">name</th>
+            <th width="20%">age</th>
+            <th width="20%">isUse</th>
+            <th width="20%">操作</th>
+        </thead>
+        <tbody>
+            <tr th:each="customer : ${userList}">
+                <td th:text="${customer.userId}"></td>
+                <td th:text="${customer.username}"></td>
+                <td th:text="${customer.password}"></td>
+                <td>
+                    <a th:href="@{/customers/edit(id=${customer.userId})}">编辑</a> &nbsp;&nbsp;
+                    <a th:href="@{/customers/del/{id}(id=${customer.userId})}">删除</a>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</body>
+</html>

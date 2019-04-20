@@ -5,7 +5,7 @@
     <title>userList</title>
     <link rel="stylesheet" th:href="@{/css/bootstrap.css}"></link>
 </head>
-<body class="container">
+<body>
 <br/>
 <h1>用户列表</h1>
 <br/><br/>
@@ -37,7 +37,17 @@
     <div class="col-sm-2 control-label">
         <a href="/toAdd" th:href="@{/toAdd}" class="btn btn-info">add</a>
     </div>
+
+
+    <form action="addUser" method="post">
+
+        name: <input name="name"/> <br/>
+        password: <input password = "password"/> <br>
+        <button type="submit">添加</button>
+
+    </form>
 </div>
+
 
 </body>
 </html>

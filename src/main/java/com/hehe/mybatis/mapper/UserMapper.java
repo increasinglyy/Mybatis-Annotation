@@ -2,6 +2,7 @@ package com.hehe.mybatis.mapper;
 
 import com.hehe.mybatis.entity.User;
 import org.apache.ibatis.annotations.Delete;
+import org.apache.ibatis.annotations.Insert;
 import org.apache.ibatis.annotations.Select;
 import org.apache.ibatis.annotations.SelectProvider;
 
@@ -23,6 +24,9 @@ public interface UserMapper {
 
     @Select("select * from t_user where user_id like #{userId}")
     User getOne(String userId);
+
+    @Insert("insert into t_user (user_id,username,password) values(null, #{username}, #{password})")
+    String addUser(User user);
 
     @Delete("delete from t_user where user_id like #{userId}")
     int delete(String userId);
