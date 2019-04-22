@@ -28,8 +28,10 @@
                 <td th:text="${customer.username}"></td>
                 <td th:text="${customer.password}"></td>
                 <td>
-                    <a th:href="@{/customers/edit(id=${customer.userId})}">编辑</a> &nbsp;&nbsp;
-                    <a th:href="@{/customers/del/{id}(id=${customer.userId})}">删除</a>
+
+                    <a th:href="@{/test1}">测试</a> &nbsp;
+                    <a th:href="@{/edit(id=${customer.userId})}">编辑</a> &nbsp;&nbsp;
+                    <a th:href="@{/customer/del/{id}(id=${customer.userId})}">删除</a>
                 </td>
             </tr>
         </tbody>

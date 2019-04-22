@@ -45,11 +45,5 @@ public class UserController {
         return new ModelAndView("user/oneUser", "user", aUser);
     }
 
-    @GetMapping("addUser")
-    public String addUser(User user){
-        userMapper.addUser(user);
-        return "redirect:user/list";
-    }
-
 
 }

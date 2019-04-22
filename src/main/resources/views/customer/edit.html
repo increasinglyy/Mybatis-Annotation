@@ -5,24 +5,22 @@
     <title>新增、编辑客户</title>
 </head>
 <body>
-    <form th:action="@{/customers/save}" method="post">
+    <form th:action="@{/save}" method="post"> <!--表格提交后采取的动作，链接地址-->
 
         <div th:if="${isAdd} == false">
             <label>id</label>
-            <input type="text" name="id" readonly="readonly" th:field="${customer.id}" />
+            <input type="text" name="id" readonly="readonly" th:field="${customer.userId}" />
         </div>
         <div>
             <label>name</label>
-            <input type="text" name="name" th:field="${customer.name}" />
+            <input type="text" name="name" th:field="${customer.username}" />
         </div>
         <div>
             <label>age</label>
-            <input type="text" name="age" th:field="${customer.age}" />
+            <input type="text" name="age" th:field="${customer.password}" />
         </div>
-        <div>
-            <label>isUse</label>
-            <input type="text" name="isUse" th:field="${customer.isUse}" />
-        </div>
+
+
         <div>
             <input type="submit" value="提交" />
         </div>
