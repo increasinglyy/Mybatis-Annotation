@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>新增、编辑客户</title>
+</head>
+<body>
+    <form th:action="@{/save}" method="post"> <!--表格提交后采取的动作，链接地址-->
+
+        <div th:if="${isAdd} == false">
+            <label>id</label>
+            <!--user是后端传来的Attribute map，key：user，value：User类-->
+            <!--readonly只读-->
+            <input type="text" name="id" readonly="readonly" th:field="${user.userId}" />
+        </div>
+        <div th:if="${isAdd} == true">
+            <label>id</label>
+            <input type="text" name="id" th:field="${user.userId}" />
+        </div>
+        <div>
+            <label>name</label>
+            <input type="text" name="name" th:field="${user.username}" />
+        </div>
+        <div>
+            <label>password</label>
+            <input type="text" name="age" th:field="${user.password}" />
+        </div>
+
+
+        <div>
+            <input type="submit" value="提交" />
+        </div>
+    </form>
+</body>
+</html>

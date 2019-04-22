@@ -4,7 +4,7 @@ import com.hehe.mybatis.entity.User;
 import org.apache.ibatis.annotations.*;
 
 import java.util.List;
-
+//sql语句中的#{...}是实体里的
 public interface UserMapper {
     //方法1
     @Select("select * from t_user")
@@ -22,7 +22,7 @@ public interface UserMapper {
     @Select("select * from t_user where user_id like #{userId}")
     User getOne(String userId);
 
-    @Insert("insert into t_user (user_id,username,password) values(null, #{username}, #{password})")
+    @Insert("insert into t_user (user_id,username,password) values(#{userId}, #{username}, #{password})")
     int addUser(User user);
 
     @Update("update t_user set username=#{username},password=#{password} where user_id=#{userId}")
@@ -31,5 +31,7 @@ public interface UserMapper {
 
 
     @Delete("delete from t_user where user_id like #{userId}")
-    int delete(String userId);
+    int deleteById(String userId);
+    @Delete("delete from t_user where username like #{username}")
+    int deleteByUsername(String username);
 }

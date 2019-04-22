@@ -5,7 +5,6 @@ import com.hehe.mybatis.mapper.UserMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -49,30 +48,6 @@ public class TestController {
         return "redirect:user/list";
     }
 
-    @RequestMapping("edit")
-    public String edit(ModelMap map, @RequestParam(defaultValue = "0") String id){
-        //isAdd : 向前端页面返回一个是新增与编辑的标识
-        if(Integer.valueOf(id).intValue() > 0){
-            map.addAttribute("isAdd",false);
-            map.addAttribute("customer",userMapper.getOne(id));
-        }else{
-            map.addAttribute("isAdd",true);
-            map.addAttribute("customer",new User());
-        }
-        return "customer/edit";
-    }
 
-    //新增和编辑
-    @ResponseBody
-    @RequestMapping("save")
-    public String save(@ModelAttribute User user){
-        if(user == null){
-            return "fail";
-        }
-        if(user.getUserId() != null){
-            userMapper.editUser(user);
-        }
-        return "success";
-    }
 }
 
