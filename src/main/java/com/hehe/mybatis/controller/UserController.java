@@ -37,7 +37,7 @@ public class UserController {
         return userMapper.findByUsername(username);
     }
 
-    //@GetMapping("user/{userid}")
+    @GetMapping("user/{userid}")
     public ModelAndView listByUserid(@PathVariable("userid") String userid){
         List<User> oneUser = userMapper.findByUserId(userid);
         User aUser = oneUser.get(0);
@@ -45,7 +45,7 @@ public class UserController {
     }
 
     @ResponseBody
-    @GetMapping("user/{userid}")
+    @GetMapping("user1/{userid}")
     public String getOneUser(@PathVariable("userid") String userid){
         User oneUser = userMapper.getOne(userid);
         if (oneUser==null || oneUser.getUserId()==null){
@@ -73,23 +73,23 @@ public class UserController {
     }
 
     //新增和编辑
+    //id为空直接编辑而不是新增？？？无法解决id为空的情况？？？==写成！=
     @ResponseBody
     @RequestMapping("save")
     public String save(@ModelAttribute User user){
-        if(user == null){
-            return "fail";
+        if(user == null || user.getUserId() == null || user.getUserId() == ""){
+            return "fail, please enter valid id";
         }
         int i=-1;
-        if(user.getUserId() != null) {
+        if(user.getUserId() != null && user.getUserId()!="") {
             i = userMapper.editUser(user);
-            System.out.println(i+ user.getUserId() + "。");
         }
         if (i==0 && user.getUserId()!=null){
 
             i = userMapper.addUser(user);
-            System.out.println(i);
             return "success add ";
         }
+
         return "success" + user.getUserId() + "。";
     }
 
@@ -107,6 +107,9 @@ public class UserController {
     @ResponseBody
     @RequestMapping("del/{id}")
     public String delete(@PathVariable("id") String id){
+        if (id == null || id == ""){
+            return "fail";
+        }
         User user = userMapper.getOne(id);
         if (user==null || user.getUserId()==null){
             return "fail";
